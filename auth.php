@@ -17,7 +17,8 @@ if (isset($_POST['name']) && isset($_POST['confirm_password'])) {
     }
 
     try {
-        $sql = "INSERT INTO USER 
+        // FIXED: Changed 'USER' to lowercase 'user' to match database schema
+        $sql = "INSERT INTO user 
                 (user_name, user_ic, user_email, user_phonenum, password, role) 
                 VALUES 
                 (:name, :ic, :email, :phone, :pass, :role)";
@@ -50,14 +51,14 @@ else if (isset($_POST['email']) && isset($_POST['password'])) {
     $pass  = $_POST['password'];
 
     try {
-        $stmt = $pdo->prepare("SELECT * FROM USER WHERE user_email = ?");
+        // FIXED: Changed 'FROM USER' to 'FROM user' to match database schema
+        $stmt = $pdo->prepare("SELECT * FROM user WHERE user_email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch();
 
         if ($user && $pass === $user['password']) {
 
-            // --- NEW: ROLE VALIDATION ---
-            // This ensures only users with the 'Citizen' role can enter this portal
+            // --- ROLE VALIDATION ---
             if (trim($user['role']) !== 'Citizen') {
                 echo "<script>alert('Access Denied: This portal is for Citizens only.'); window.location='login.php';</script>";
                 exit();
