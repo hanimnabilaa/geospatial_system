@@ -1,0 +1,114 @@
+-- Table: LOCATION
+CREATE TABLE LOCATION (
+    location_id INT PRIMARY KEY AUTO_INCREMENT,
+    latitude DECIMAL(9,6),
+    longitude DECIMAL(9,6),
+    address VARCHAR(255),
+    district VARCHAR(100)
+);
+
+-- Table: INFRASTRUCTURE_TYPE
+CREATE TABLE INFRASTRUCTURE_TYPE (
+    infrastructure_type_id INT PRIMARY KEY AUTO_INCREMENT,
+    type_name VARCHAR(100)
+);
+
+-- Table: STATUS
+CREATE TABLE STATUS (
+    status_id INT PRIMARY KEY AUTO_INCREMENT,
+    status_name VARCHAR(50)
+);
+
+-- Table: USER
+CREATE TABLE USER (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_name VARCHAR(100),
+    role VARCHAR(50),
+    user_ic VARCHAR(20),
+    user_phonenum VARCHAR(20),
+    user_email VARCHAR(100),
+    password VARCHAR(255)
+);
+
+-- Table: MAINTENANCE_TEAM
+CREATE TABLE MAINTENANCE_TEAM (
+    team_id INT PRIMARY KEY AUTO_INCREMENT,
+    team_name VARCHAR(100),
+    department VARCHAR(100),
+    phone_num VARCHAR(20)
+);
+
+-- Table: COMPLAINT
+CREATE TABLE COMPLAINT (
+    complaint_id INT PRIMARY KEY AUTO_INCREMENT,
+    description TEXT,
+    severity VARCHAR(50),
+    impact VARCHAR(50),
+    date_reported DATETIME,
+    user_id INT,
+    location_id INT,
+    infrastructure_type_id INT,
+    status_id INT,
+    FOREIGN KEY (user_id) REFERENCES USER(user_id),
+    FOREIGN KEY (location_id) REFERENCES LOCATION(location_id),
+    FOREIGN KEY (infrastructure_type_id) REFERENCES INFRASTRUCTURE_TYPE(infrastructure_type_id),
+    FOREIGN KEY (status_id) REFERENCES STATUS(status_id)
+);
+
+-- Table: TEAM_MEMBER (No Auto-Increment here)
+-- Note: Associative tables usually don't need an auto-increment ID 
+-- because the combination of Foreign Keys acts as the unique identifier.
+CREATE TABLE TEAM_MEMBER (
+    team_id INT,
+    user_id INT,
+    PRIMARY KEY (team_id, user_id),
+    FOREIGN KEY (team_id) REFERENCES MAINTENANCE_TEAM(team_id),
+    FOREIGN KEY (user_id) REFERENCES USER(user_id)
+);
+
+-- Table: WORK_ORDER
+CREATE TABLE WORK_ORDER (
+    work_order_id INT PRIMARY KEY AUTO_INCREMENT,
+    complaint_id INT,
+    team_id INT,
+    date_assigned DATETIME,
+    date_completed DATETIME,
+    work_status VARCHAR(50),
+    FOREIGN KEY (complaint_id) REFERENCES COMPLAINT(complaint_id),
+    FOREIGN KEY (team_id) REFERENCES MAINTENANCE_TEAM(team_id)
+);
+
+-- Table: AUDIT_LOG
+CREATE TABLE AUDIT_LOG (
+    audit_id INT PRIMARY KEY AUTO_INCREMENT,
+    complaint_id INT,
+    user_id INT,
+    action_type VARCHAR(50),
+    old_value TEXT,
+    new_value TEXT,
+    action_date DATETIME,
+    FOREIGN KEY (complaint_id) REFERENCES COMPLAINT(complaint_id),
+    FOREIGN KEY (user_id) REFERENCES USER(user_id)
+);
+
+-- Table: COMPLAINT_MERGE
+CREATE TABLE COMPLAINT_MERGE (
+    merge_id INT PRIMARY KEY AUTO_INCREMENT,
+    complaint_id INT,
+    duplicate_complaint_id INT,
+    merge_date DATETIME,
+    distance_meter DECIMAL(10,2),
+    FOREIGN KEY (complaint_id) REFERENCES COMPLAINT(complaint_id),
+    FOREIGN KEY (duplicate_complaint_id) REFERENCES COMPLAINT(complaint_id)
+);
+
+-- Table: WEIGHT_SCORE
+CREATE TABLE WEIGHT_SCORE (
+    priority_id INT PRIMARY KEY AUTO_INCREMENT,
+    complaint_id INT,
+    severity_weight INT,
+    impact_weight INT,
+    priority_score DECIMAL(5,2),
+    calculated_date DATETIME,
+    FOREIGN KEY (complaint_id) REFERENCES COMPLAINT(complaint_id)
+);

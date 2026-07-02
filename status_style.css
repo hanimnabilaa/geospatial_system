@@ -1,0 +1,123 @@
+/* Variables Shared with Main Theme */
+:root {
+    --dark-blue: #1e3a8a;
+    --light-bg: #f3f4f6;
+    --white: #ffffff;
+    --grey-text: #6b7280;
+}
+
+/* Page Layout */
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background: var(--light-bg); 
+    color: #333; 
+    padding: 40px; /* Merged from your snippet */
+}
+
+.container { 
+    max-width: 1000px; /* Updated to 1000px per your snippet */
+    margin: auto; 
+}
+
+.header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 30px; 
+}
+
+.header h1 {
+    color: var(--dark-blue);
+}
+
+/* Report Card Styling */
+.report-card { 
+    background: var(--white); 
+    padding: 20px; 
+    border-radius: 12px; 
+    margin-bottom: 20px; /* Updated to 20px per your snippet */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Updated to your stronger shadow */
+    display: flex; 
+    gap: 20px; 
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.report-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Image Handling */
+.report-img { 
+    width: 150px; /* Updated to 150px per your snippet */
+    height: 150px; 
+    object-fit: cover; 
+    border-radius: 8px; 
+    background-color: #eee;
+}
+
+.report-info { 
+    flex: 1; 
+}
+
+/* Priority & Status Components */
+.priority-pill {
+    font-size: 0.7rem; 
+    padding: 2px 10px; 
+    border-radius: 4px; 
+    color: white; 
+    font-weight: bold; 
+    text-transform: uppercase;
+}
+
+/* Added from your snippet - used if you want the score box back */
+.priority-box { 
+    text-align: center; 
+    background: var(--dark-blue); 
+    color: white; 
+    padding: 10px; 
+    border-radius: 6px;
+    min-width: 80px;
+}
+
+.badge { 
+    padding: 5px 12px; /* Updated padding */
+    border-radius: 20px; 
+    font-size: 0.85rem; /* Updated size */
+    font-weight: bold; 
+    text-transform: uppercase;
+}
+
+/* Status Variations (Merged Colors) */
+.status-pending { 
+    background: #fef3c7; /* Your Yellow/Amber Pending */
+    color: #92400e; 
+}
+
+.status-resolved { 
+    background: #d1fae5; /* Your Green Resolved */
+    color: #065f46; 
+}
+
+.status-inprogress, .status-progress {
+    background: #dbeafe; /* Your Blue Progress */
+    color: #1e40af;
+}
+
+/* Typography & Helpers */
+.meta { 
+    color: #666; 
+    font-size: 0.9rem; 
+    margin-top: 5px; 
+}
+
+.btn-home { 
+    text-decoration: none; 
+    color: var(--dark-blue); 
+    font-weight: bold; 
+    transition: opacity 0.3s;
+}
+
+.btn-home:hover {
+    opacity: 0.7;
+}

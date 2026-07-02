@@ -1,0 +1,186 @@
+/* Color Palette and Variables */
+:root {
+    --dark-blue: #1e3a8a;
+    --blue: #3b82f6;
+    --grey: #6b7280;
+    --white: #ffffff;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+    --green: #10b981;
+    --light-bg: #f3f4f6;
+}
+
+/* Global Resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light-bg);
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header & Navigation */
+header {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--blue);
+}
+
+.btn-login {
+    background-color: var(--blue);
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(30, 58, 138, 0.9), rgba(59, 130, 246, 0.8)), 
+                url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=1920&q=80') center/cover;
+    color: var(--white);
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    max-width: 900px;
+    margin: 0 auto 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto 30px;
+}
+
+.hero-btn {
+    background-color: var(--red);
+    color: var(--white);
+    padding: 12px 24px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.hero-btn:hover {
+    background-color: #dc2626;
+}
+
+/* Layout Containers */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+.section-title {
+    text-align: center;
+    color: var(--dark-blue);
+    margin-bottom: 40px;
+    font-size: 2rem;
+}
+
+/* Features Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+    border-top: 4px solid var(--blue);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    color: var(--dark-blue);
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: var(--grey);
+    font-size: 0.95rem;
+}
+
+/* User Roles Section */
+.roles-section {
+    background-color: var(--white);
+    padding: 50px 20px;
+    margin-top: 50px;
+}
+
+.role-badges {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    color: var(--white);
+}
+
+.badge-citizen { background-color: var(--green); }
+.badge-tech { background-color: var(--yellow); }
+.badge-admin { background-color: var(--red); }
+
+/* Footer */
+footer {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+/* Indicators */
+.priority-indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
