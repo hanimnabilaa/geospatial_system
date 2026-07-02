@@ -17,7 +17,7 @@ if (isset($_POST['name']) && isset($_POST['confirm_password'])) {
     }
 
     try {
-        $sql = "INSERT INTO user 
+        $sql = "INSERT INTO USER 
                 (user_name, user_ic, user_email, user_phonenum, password, role) 
                 VALUES 
                 (:name, :ic, :email, :phone, :pass, :role)";
